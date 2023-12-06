@@ -1,5 +1,4 @@
 from pathlib import PurePath
-from io import StringIO, BytesIO
 
 class SRT_Line:
     def __init__(self):
