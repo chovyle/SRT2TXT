@@ -58,7 +58,7 @@ class SRT_Line:
         self.sTime, self.eTime = timestamp.split(' --> ')
 
     def get_text_list(self, text_list):
-        self.text = ''.join(text_list)
+        self.text = ' '.join([text.strip() for text in text_list])
 
     def properties(self):
         return (self.order, self.sTime, self.eTime, self.text)
@@ -103,7 +103,6 @@ class SRT_List(list):
         for line in src.readlines():
 
             line = line.decode()
-            
             if line.strip() == '':
                 SRT_INFO = SRT_Line()
                 SRT_INFO.order = BUFFER[0]
