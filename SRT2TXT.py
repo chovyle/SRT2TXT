@@ -102,15 +102,19 @@ class SRT_List(list):
         for line in src.readlines():
 
             line = line.decode()
-            if line.strip() == '':
-                SRT_INFO = SRT_Line()
-                SRT_INFO.order = BUFFER[0]
-                SRT_INFO.get_timestamp(BUFFER[1])
-                SRT_INFO.get_text_list(BUFFER[2:])
-                self.append(SRT_INFO)
+            try:
+                if line.strip() == '':
+                    SRT_INFO = SRT_Line()
+                    SRT_INFO.order = BUFFER[0]
+                    SRT_INFO.get_timestamp(BUFFER[1])
+                    SRT_INFO.get_text_list(BUFFER[2:])
+                    self.append(SRT_INFO)
+                    BUFFER.clear()
+                else:
+                    BUFFER.append(line.strip())
+            except IndexError as t:
+                print(f'{line} / {t}')
                 BUFFER.clear()
-            else:
-                BUFFER.append(line.strip())
 
     
     def export_streamlit(self):
