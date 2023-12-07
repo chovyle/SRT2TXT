@@ -113,7 +113,6 @@ class SRT_List(list):
                 else:
                     BUFFER.append(line.strip())
             except IndexError as t:
-                print(f'{line} / {t}')
                 BUFFER.clear()
 
     
